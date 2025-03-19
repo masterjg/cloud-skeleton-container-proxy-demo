@@ -15,7 +15,6 @@ networks:
 
 services:
   static-web-server:
-    <<: *service
     configs:
       - mode: 0440
         source: static-web-server
