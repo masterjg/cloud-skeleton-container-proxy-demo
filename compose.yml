@@ -37,7 +37,7 @@ services:
     image: joseluisq/static-web-server:2.36.0-alpine
     labels:
       - traefik.enable=true
-      - traefik.http.routers.security-file.rule=Host("${HOSTNAME:?}")
+      - traefik.http.routers.static-web-server.rule=Host("${HOSTNAME:?}")
     mem_swappiness: 0
     networks:
       - proxy_bridge
