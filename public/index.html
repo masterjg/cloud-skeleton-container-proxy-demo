@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Container Proxy Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 1rem;
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    footer {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Container Proxy Demo</h1>
+    <p>This is an example page for a Traefik reverse proxy setup.</p>
+    <footer>Powered by Traefik &amp; Docker</footer>
+  </div>
+</body>
+</html>

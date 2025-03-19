@@ -1,0 +1,54 @@
+---
+configs:
+  static-web-server:
+    content: |
+      [general]
+      compression-level = "best"
+      health = true
+      log-level = "warn"
+
+name: container-proxy-demo
+
+networks:
+  proxy_bridge:
+    external: true
+
+services:
+  static-web-server:
+    <<: *service
+    configs:
+      - mode: 0440
+        source: static-web-server
+        target: /config.toml
+    depends_on:
+      traefik:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 8M
+    healthcheck:
+      interval: 10s
+      start_interval: 2s
+      start_period: 10s
+      test:
+        - CMD
+        - wget
+        - --spider
+        - -q
+        - http://127.0.0.1/health
+      timeout: 3s
+    image: joseluisq/static-web-server:2.36.0-alpine
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.security-file.rule=Host("${HOSTNAME:?}")
+    mem_swappiness: 0
+    networks:
+      - proxy_bridge
+    restart: unless-stopped
+    security_opt:
+      - label:disable
+    userns_mode: keep-id:uid=0,gid=0
+    volumes:
+      - ./public:/public:ro
+...
