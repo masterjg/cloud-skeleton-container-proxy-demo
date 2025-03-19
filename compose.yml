@@ -38,6 +38,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.static-web-server.rule=Host("${HOSTNAME:?}")
+      - traefik.http.routers.static-web-server.tls.certResolver=letsencrypt
     mem_swappiness: 0
     networks:
       - proxy_bridge
